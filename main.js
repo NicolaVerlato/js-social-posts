@@ -57,12 +57,27 @@ const posts = [
 singlePost(posts);
 
 // counter likes
-const likeBtn = document.querySelector('.likes__cta');
-likeBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    
-})
+const likeBtn = document.querySelectorAll('.js-like-button');
+let likeCounter = document.querySelectorAll('.js-likes-counter');
 
+for(let i = 0; i < likeBtn.length; i++) {
+    const singleLikeBtn = likeBtn[i];
+    singleLikeBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        // aggiungo la classe per cambiare il colore
+        this.classList.add('like-button--liked');
+
+        // incremento il counter dei likes di uno
+        const thisLikeCounter = likeCounter[i];
+        let numberOfLikes = parseInt(thisLikeCounter.innerHTML);
+        numberOfLikes++;
+        thisLikeCounter.innerHTML = numberOfLikes;
+        // console.log(numberOfLikes)
+        // console.log(thisLikeCounter)
+    }
+    );
+}
 // -----------------
 // FUNCTIONS
 // -----------------
