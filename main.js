@@ -65,16 +65,18 @@ for(let i = 0; i < likeBtn.length; i++) {
     singleLikeBtn.addEventListener('click', function(event) {
         event.preventDefault();
         
-        // aggiungo la classe per cambiare il colore
-        this.classList.add('like-button--liked');
+        if(!this.classList.contains('like-button--liked')){
+            // aggiungo la classe per cambiare il colore
+            this.classList.add('like-button--liked');
 
-        // incremento il counter dei likes di uno
-        const thisLikeCounter = likeCounter[i];
-        let numberOfLikes = parseInt(thisLikeCounter.innerHTML);
-        numberOfLikes++;
-        thisLikeCounter.innerHTML = numberOfLikes;
-        // console.log(numberOfLikes)
-        // console.log(thisLikeCounter)
+            // incremento il counter dei likes di uno
+            const thisLikeCounter = likeCounter[i];
+            let numberOfLikes = parseInt(thisLikeCounter.innerHTML);
+            numberOfLikes++;
+            thisLikeCounter.innerHTML = numberOfLikes;
+            // console.log(numberOfLikes)
+            // console.log(thisLikeCounter)
+        }
     }
     );
 }
@@ -112,13 +114,13 @@ function singlePost(arrayPosts){
                 <div class="post__footer">
                     <div class="likes js-likes">
                         <div class="likes__cta">
-                            <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <a class="like-button  js-like-button" href="#" data-postid="${thisPost.id}">
                                 <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                                 <span class="like-button__label">Mi Piace</span>
                             </a>
                         </div>
                         <div class="likes__counter">
-                            Piace a <b id="like-counter-1" class="js-likes-counter">${thisPost.likes}</b> persone
+                            Piace a <b id="like-counter-${thisPost.id}" class="js-likes-counter">${thisPost.likes}</b> persone
                         </div>
                     </div> 
                 </div>            
